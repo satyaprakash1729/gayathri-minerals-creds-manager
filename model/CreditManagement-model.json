@@ -1,0 +1,231 @@
+{
+  "info1": "======================================================================================================",
+  "info2": "= This Project was generated with generjee. http://generjee.com                                      =",
+  "info3": "= You can import this file into the generjee tool, then change the project model and generate again. =",
+  "info4": "======================================================================================================",
+  "entities": [
+    {
+      "name": "User",
+      "id": "User",
+      "lookupField": "username",
+      "fields": [
+        {
+          "id": 0,
+          "name": "id",
+          "type": "Autoincremented ID",
+          "editable": false,
+          "showInTable": false,
+          "required": true
+        },
+        {
+          "id": "username",
+          "name": "Username",
+          "type": "String",
+          "editable": false,
+          "showInTable": true,
+          "stringLength": 50,
+          "required": true
+        },
+        {
+          "id": "password",
+          "name": "Password",
+          "type": "Password",
+          "editable": false,
+          "showInTable": false,
+          "required": true
+        },
+        {
+          "id": "email",
+          "name": "E-mail",
+          "type": "String",
+          "editable": false,
+          "showInTable": true,
+          "stringLength": 50,
+          "required": true
+        },
+        {
+          "id": "roles",
+          "name": "Roles",
+          "type": "Enumeration",
+          "editable": false,
+          "showInTable": false,
+          "required": true
+        },
+        {
+          "id": "status",
+          "name": "Status",
+          "type": "Enumeration",
+          "editable": false,
+          "showInTable": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Account",
+      "id": 1,
+      "lookupField": 0,
+      "exportable": true,
+      "lazyLoading": true,
+      "auditEnabled": true,
+      "aclEnabled": true,
+      "authorization": [
+        {
+          "roleId": 1,
+          "roleName": "Administrator",
+          "createPerm": 1,
+          "readPerm": 1,
+          "updatePerm": 1,
+          "deletePerm": 1,
+          "changeOwnerPerm": 1,
+          "ownerRoleEnabled": false
+        },
+        {
+          "roleId": 2,
+          "roleName": "Public",
+          "createPerm": "0",
+          "readPerm": "0",
+          "updatePerm": "0",
+          "deletePerm": "0",
+          "changeOwnerPerm": 0,
+          "ownerRoleEnabled": false
+        },
+        {
+          "roleId": "registered001",
+          "roleName": "Registered",
+          "createPerm": 1,
+          "readPerm": 1,
+          "updatePerm": "0",
+          "deletePerm": "0",
+          "changeOwnerPerm": 0,
+          "ownerRoleEnabled": false
+        }
+      ],
+      "fields": [
+        {
+          "id": 0,
+          "name": "id",
+          "type": "Autoincremented ID",
+          "editable": false,
+          "showInTable": false,
+          "required": true
+        },
+        {
+          "id": 1,
+          "name": "name",
+          "type": "String",
+          "editable": true,
+          "showInTable": true,
+          "stringLength": "100",
+          "required": true
+        },
+        {
+          "id": 3,
+          "name": "surname",
+          "type": "String",
+          "editable": true,
+          "showInTable": true,
+          "stringLength": 50,
+          "required": false
+        },
+        {
+          "id": 4,
+          "name": "aadhar_id",
+          "type": "String",
+          "editable": true,
+          "showInTable": true,
+          "stringLength": "30",
+          "required": false
+        },
+        {
+          "id": 5,
+          "name": "address",
+          "type": "String",
+          "editable": true,
+          "showInTable": true,
+          "stringLength": "200",
+          "required": false
+        },
+        {
+          "id": 6,
+          "name": "city",
+          "type": "String",
+          "editable": true,
+          "showInTable": true,
+          "stringLength": 50,
+          "required": false
+        },
+        {
+          "id": 7,
+          "name": "pincode",
+          "type": "Number",
+          "editable": true,
+          "showInTable": true,
+          "integerLength": "6",
+          "required": false
+        },
+        {
+          "id": 8,
+          "name": "loan_amount",
+          "type": "Decimal",
+          "editable": true,
+          "showInTable": true,
+          "integerLength": "10",
+          "fractionLength": 2,
+          "required": true
+        },
+        {
+          "id": 9,
+          "name": "interest_rate_per_annum",
+          "type": "Decimal",
+          "editable": true,
+          "showInTable": true,
+          "integerLength": 5,
+          "fractionLength": 2,
+          "required": true
+        },
+        {
+          "id": 10,
+          "name": "compounding_period_in_months",
+          "type": "Number",
+          "editable": true,
+          "showInTable": true,
+          "integerLength": "4",
+          "required": true
+        }
+      ]
+    }
+  ],
+  "appSettings": {
+    "generjeeversion": "1.0",
+    "appName": "CreditManagement",
+    "package": "org.gayathri.services.credit",
+    "masterDetailsStyle": "1",
+    "dataListStyle": "1",
+    "pfTheme": "omega",
+    "runtarget": "as",
+    "layer": {
+      "rest": true
+    },
+    "manageRolesAndUsers": true,
+    "createRegistrationForm": true,
+    "roles": [
+      {
+        "id": 1,
+        "name": "Administrator",
+        "canBeDeleted": false
+      },
+      {
+        "id": 2,
+        "name": "Public",
+        "canBeDeleted": false
+      },
+      {
+        "id": "registered001",
+        "name": "Registered",
+        "canBeDeleted": false
+      }
+    ]
+  },
+  "guid": "72b6b7fb-393c-4be9-e449-925bbf5f4e35"
+}

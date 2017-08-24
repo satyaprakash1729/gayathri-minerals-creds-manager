@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:o="http://omnifaces.org/ui">
+<ui:composition template="/templates/layout.xhtml">
+  <ui:define name="content">
+
+    <h:form prependId="false" id="accountDataForm" onkeypress="if (event.keyCode == 13) {return false; }">
+
+        <p:dataTable id="accountTable" value="#{accountBean.lazyModel}" var="account" resizableColumns="true" paginator="true"
+                paginatorTemplate=" {CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                rowsPerPageTemplate="5,10,25,50" rows="10" draggableColumns="true" lazy="true"
+                paginatorPosition="bottom" widgetVar="accountTable" emptyMessage="#{messages.label_no_records_found}"
+                reflow="true">
+        
+          <f:facet name="header" >
+
+              <p:commandButton value="#{messages.create_new_account}" icon="ui-icon-plusthick" action="#{accountBean.prepareNewAccount()}"
+                      resetValues="true" update=":editAccountDialog" oncomplete="PF('editAccountDialogWidget').show()"
+                      rendered="#{accountBean.isPermitted('account:create')}" style="float:left" />
+              
+              <p:commandButton id="toggler" type="button" value="#{messages.table_select_columns}" icon="ui-icon-calculator" />
+              <p:columnToggler datasource="accountTable" trigger="toggler" />
+          </f:facet>
+          
+          <p:column  headerText="#{messages.field_label_account_name}" sortBy="#{account.name}" filterBy="#{account.name}">
+            <f:facet name="filter">
+                <p:inputText id="nameFilter"
+                        onkeypress="if (event.keyCode == 13) {PF('accountTable').filter(); updateNameFilter(); return false; }" >
+                    <p:remoteCommand name="updateNameFilter" update="accountTable:nameFilter" />
+                </p:inputText>
+            </f:facet>
+            <h:outputText value="#{account.name}" />
+          </p:column>
+
+          <p:column  headerText="#{messages.field_label_account_surname}" sortBy="#{account.surname}" filterBy="#{account.surname}">
+            <f:facet name="filter">
+                <p:inputText id="surnameFilter"
+                        onkeypress="if (event.keyCode == 13) {PF('accountTable').filter(); updateSurnameFilter(); return false; }" >
+                    <p:remoteCommand name="updateSurnameFilter" update="accountTable:surnameFilter" />
+                </p:inputText>
+            </f:facet>
+            <h:outputText value="#{account.surname}" />
+          </p:column>
+
+          <p:column  headerText="#{messages.field_label_account_aadharid}" sortBy="#{account.aadharid}" filterBy="#{account.aadharid}">
+            <f:facet name="filter">
+                <p:inputText id="aadharidFilter"
+                        onkeypress="if (event.keyCode == 13) {PF('accountTable').filter(); updateAadharidFilter(); return false; }" >
+                    <p:remoteCommand name="updateAadharidFilter" update="accountTable:aadharidFilter" />
+                </p:inputText>
+            </f:facet>
+            <h:outputText value="#{account.aadharid}" />
+          </p:column>
+
+          <p:column  headerText="#{messages.field_label_account_address}" sortBy="#{account.address}" filterBy="#{account.address}">
+            <f:facet name="filter">
+                <p:inputText id="addressFilter"
+                        onkeypress="if (event.keyCode == 13) {PF('accountTable').filter(); updateAddressFilter(); return false; }" >
+                    <p:remoteCommand name="updateAddressFilter" update="accountTable:addressFilter" />
+                </p:inputText>
+            </f:facet>
+            <h:outputText value="#{account.address}" />
+          </p:column>
+
+          <p:column  headerText="#{messages.field_label_account_city}" sortBy="#{account.city}" filterBy="#{account.city}">
+            <f:facet name="filter">
+                <p:inputText id="cityFilter"
+                        onkeypress="if (event.keyCode == 13) {PF('accountTable').filter(); updateCityFilter(); return false; }" >
+                    <p:remoteCommand name="updateCityFilter" update="accountTable:cityFilter" />
+                </p:inputText>
+            </f:facet>
+            <h:outputText value="#{account.city}" />
+          </p:column>
+
+          <p:column headerText="#{messages.field_label_account_pincode}" sortBy="#{account.pincode}" filterBy="#{account.pincode}">
+            <f:facet name="filter">
+                <p:inputText id="pincodeFilter"
+                        onkeypress="if (event.keyCode == 13) {PF('accountTable').filter(); updatePincodeFilter(); return false; }" >
+                    <p:remoteCommand name="updatePincodeFilter" update="accountTable:pincodeFilter" />
+                    <f:convertNumber integerOnly="true" />
+                </p:inputText>
+            </f:facet>
+            <h:outputText value="#{account.pincode}" ><f:convertNumber /></h:outputText>
+          </p:column>
+
+          <p:column headerText="#{messages.field_label_account_loanamount}" sortBy="#{account.loanamount}" filterBy="#{account.loanamount}">
+            <f:facet name="filter">
+                <p:inputText id="loanamountFilter"
+                        onkeypress="if (event.keyCode == 13) {PF('accountTable').filter(); updateLoanamountFilter(); return false; }" >
+                    <f:convertNumber />
+                    <p:remoteCommand name="updateLoanamountFilter" update="accountTable:loanamountFilter" />
+                </p:inputText>
+            </f:facet>
+            <h:outputText value="#{account.loanamount}"><f:convertNumber /></h:outputText>
+          </p:column>
+
+          <p:column headerText="#{messages.field_label_account_interestrateperannum}" sortBy="#{account.interestrateperannum}" filterBy="#{account.interestrateperannum}">
+            <f:facet name="filter">
+                <p:inputText id="interestrateperannumFilter"
+                        onkeypress="if (event.keyCode == 13) {PF('accountTable').filter(); updateInterestrateperannumFilter(); return false; }" >
+                    <f:convertNumber />
+                    <p:remoteCommand name="updateInterestrateperannumFilter" update="accountTable:interestrateperannumFilter" />
+                </p:inputText>
+            </f:facet>
+            <h:outputText value="#{account.interestrateperannum}"><f:convertNumber /></h:outputText>
+          </p:column>
+
+          <p:column headerText="#{messages.field_label_account_compoundingperiodinmonths}" sortBy="#{account.compoundingperiodinmonths}" filterBy="#{account.compoundingperiodinmonths}">
+            <f:facet name="filter">
+                <p:inputText id="compoundingperiodinmonthsFilter"
+                        onkeypress="if (event.keyCode == 13) {PF('accountTable').filter(); updateCompoundingperiodinmonthsFilter(); return false; }" >
+                    <p:remoteCommand name="updateCompoundingperiodinmonthsFilter" update="accountTable:compoundingperiodinmonthsFilter" />
+                    <f:convertNumber integerOnly="true" />
+                </p:inputText>
+            </f:facet>
+            <h:outputText value="#{account.compoundingperiodinmonths}" ><f:convertNumber /></h:outputText>
+          </p:column>
+
+          <p:column styleClass="action-column" headerText="#{messages.table_actions_column}" width="115" exportable="false">
+            
+            <p:commandButton icon="ui-icon-zoomin" update=":viewAccountDialog" oncomplete="PF('viewAccountDialogWidget').show()" title="#{messages.label_view}">
+              <f:setPropertyActionListener value="#{account}" target="#{accountBean.account}" />
+            </p:commandButton>
+
+            <p:commandButton icon="ui-icon-pencil" update=":editAccountDialog"
+                resetValues="true" rendered="#{accountBean.isPermitted(account, 'account:update')}"
+                action="#{accountBean.onDialogOpen(account)}"
+                oncomplete="PF('editAccountDialogWidget').show()"
+                title="#{messages.label_edit}" >
+            </p:commandButton>
+
+            <p:commandButton icon="ui-icon-close" rendered="#{accountBean.isPermitted(account, 'account:delete')}"
+                oncomplete="PF('deleteAccountDialogWidget').show()"
+                title="#{messages.label_delete}" >
+                <f:setPropertyActionListener value="#{account}"
+                    target="#{accountBean.account}" />
+            </p:commandButton>
+    
+          </p:column>
+          
+        </p:dataTable>
+        
+        <h:panelGrid columns="2">
+            <p:panel header="#{messages.export_all_data}">
+
+                <h:commandLink>
+                    <h:graphicImage  name="images/excel.png" alt="Excel|" />
+                    <p:dataExporter type="xls" target="accountTable" fileName="Accounts"/>
+                </h:commandLink>
+
+                <h:commandLink>
+                    <h:graphicImage name="images/pdf.png" alt="PDF|" />
+                    <p:dataExporter type="pdf" target="accountTable" fileName="Accounts"/>
+                </h:commandLink>
+                
+                <h:commandLink>
+                    <h:graphicImage name="images/csv.png" alt="CSV" />
+                    <p:dataExporter type="csv" target="accountTable" fileName="Accounts" />
+                </h:commandLink>
+
+            </p:panel>
+            
+            <p:panel header="#{messages.export_page_data}">
+                <h:commandLink>
+                    <h:graphicImage name="images/excel.png" alt="Excel|" />
+                    <p:dataExporter type="xls" target="accountTable" fileName="Accounts" pageOnly="true"/>
+                </h:commandLink>
+
+                <h:commandLink>
+                    <h:graphicImage name="images/pdf.png" alt="PDF|" />
+                    <p:dataExporter type="pdf" target="accountTable" fileName="Accounts" pageOnly="true"/>
+                </h:commandLink>
+                
+                <h:commandLink>
+                    <h:graphicImage name="images/csv.png" alt="CSV" />
+                    <p:dataExporter type="csv" target="accountTable" fileName="Accounts" pageOnly="true"/>
+                </h:commandLink>
+                
+            </p:panel>
+        </h:panelGrid>
+        
+    </h:form>
+
+    <p:confirmDialog id="deleteAccountDialog" widgetVar="deleteAccountDialogWidget"
+        rendered="#{accountBean.isPermitted(accountBean.account, 'account:delete')}" header="#{messages.label_confirm_deletion}"
+        severity="alarm">
+        <f:facet name="message"><h:outputText value="#{messages.label_delete_record}" escape="false"/></f:facet>
+        <p:outputPanel>
+          <h:form>
+            <div style="text-align: center; margin:10px">
+              <p:commandButton value="#{messages.label_yes}" action="#{accountBean.delete}" update=":accountDataForm :growlForm:growl" oncomplete="PF('deleteAccountDialogWidget').hide()" />
+              <p:commandButton value="#{messages.label_no}" onclick="PF('deleteAccountDialogWidget').hide()" type="button" />
+            </div>
+          </h:form>
+        </p:outputPanel>
+    </p:confirmDialog>
+    
+    <p:dialog dynamic="true" id="editAccountDialog" header="#{messages.label_account_caption}"
+            modal="true" widgetVar="editAccountDialogWidget" maximizable="true">
+        <p:ajax event="close" listener="#{accountBean.reset}"/>
+        <h:form id="editAccountForm" >
+            <p:outputPanel id="accountEditPanel">
+                <ui:include src="/pages/account/accountEditInclude.xhtml"/>
+                <div style="text-align: center; margin:10px">
+                    <p:commandButton value="#{messages.label_save}"
+                            icon="ui-icon-disk" action="#{accountBean.persist}"
+                            update=":editAccountForm:accountEditPanel :accountDataForm :growlForm:growl"
+                            oncomplete="if(!args.validationFailed) PF('editAccountDialogWidget').hide()" />
+                    <p:commandButton value="#{messages.label_close}" icon="ui-icon-close" onclick="PF('editAccountDialogWidget').hide()" type="button" />
+                </div>
+            </p:outputPanel>
+        </h:form>
+    </p:dialog>
+    
+    <p:dialog dynamic="true" id="viewAccountDialog" header="#{messages.label_account_caption}" modal="true" widgetVar="viewAccountDialogWidget" maximizable="true">
+        <p:ajax event="close" listener="#{accountBean.reset}" />
+        <h:form id="viewAccountForm">
+          <ui:include src="/pages/account/accountViewInclude.xhtml"/>
+          <div style="text-align: center; margin:10px">
+              <p:commandButton value="#{messages.label_close}" icon="ui-icon-close" onclick="PF('viewAccountDialogWidget').hide()" type="button" />
+          </div>
+        </h:form>
+    </p:dialog>
+    
+  </ui:define>
+</ui:composition>
+</html>

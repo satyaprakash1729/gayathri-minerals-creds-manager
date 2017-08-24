@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:o="http://omnifaces.org/ui">
+
+        <p:outputPanel styleClass="ui-fluid">
+
+            <p:panelGrid columns="3" columnClasses="ui-grid-col-4,ui-grid-col-6,ui-grid-col-2" layout="grid" style="max-width:400px">
+            
+                <h:outputLabel value="#{messages.field_label_account_name}:" for="nameEditInput" />
+                <p:inputText value="#{accountBean.account.name}" id="nameEditInput" 
+                    label="#{messages.field_label_account_name}" />
+                <p:message for="nameEditInput" display="icon" />
+
+                <h:outputLabel value="#{messages.field_label_account_surname}:" for="surnameEditInput" />
+                <p:inputText value="#{accountBean.account.surname}" id="surnameEditInput" 
+                    label="#{messages.field_label_account_surname}" />
+                <p:message for="surnameEditInput" display="icon" />
+
+                <h:outputLabel value="#{messages.field_label_account_aadharid}:" for="aadharidEditInput" />
+                <p:inputText value="#{accountBean.account.aadharid}" id="aadharidEditInput" 
+                    label="#{messages.field_label_account_aadharid}" />
+                <p:message for="aadharidEditInput" display="icon" />
+
+                <h:outputLabel value="#{messages.field_label_account_address}:" for="addressEditInput" />
+                <p:inputText value="#{accountBean.account.address}" id="addressEditInput" 
+                    label="#{messages.field_label_account_address}" />
+                <p:message for="addressEditInput" display="icon" />
+
+                <h:outputLabel value="#{messages.field_label_account_city}:" for="cityEditInput" />
+                <p:inputText value="#{accountBean.account.city}" id="cityEditInput" 
+                    label="#{messages.field_label_account_city}" />
+                <p:message for="cityEditInput" display="icon" />
+
+                <h:outputLabel value="#{messages.field_label_account_pincode}:" for="pincodeEditInput" />
+                <p:inputText value="#{accountBean.account.pincode}"  id="pincodeEditInput" 
+                    label="#{messages.field_label_account_pincode}" />
+                <p:message for="pincodeEditInput" display="icon" />
+
+                <h:outputLabel value="#{messages.field_label_account_loanamount}:" for="loanamountEditInput" />
+                <p:inputText value="#{accountBean.account.loanamount}" id="loanamountEditInput" label="#{messages.field_label_account_loanamount}" >
+                    <f:convertNumber />
+                </p:inputText>
+                <p:message for="loanamountEditInput" display="icon" />
+
+                <h:outputLabel value="#{messages.field_label_account_interestrateperannum}:" for="interestrateperannumEditInput" />
+                <p:inputText value="#{accountBean.account.interestrateperannum}" id="interestrateperannumEditInput" label="#{messages.field_label_account_interestrateperannum}" >
+                    <f:convertNumber />
+                </p:inputText>
+                <p:message for="interestrateperannumEditInput" display="icon" />
+
+                <h:outputLabel value="#{messages.field_label_account_compoundingperiodinmonths}:" for="compoundingperiodinmonthsEditInput" />
+                <p:inputText value="#{accountBean.account.compoundingperiodinmonths}"  id="compoundingperiodinmonthsEditInput" 
+                    label="#{messages.field_label_account_compoundingperiodinmonths}" />
+                <p:message for="compoundingperiodinmonthsEditInput" display="icon" />
+
+            </p:panelGrid>
+
+        </p:outputPanel>
+</html>
