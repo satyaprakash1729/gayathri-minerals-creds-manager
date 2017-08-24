@@ -1,0 +1,1 @@
+# gayathri-minerals-creds-manager
